@@ -93,6 +93,26 @@ app.patch('/issues/:id/update', (req, res) => {
 });
 
 // DELETE
+app.delete('/issues/:id/delete', (req, res) => {
+  //1. bringing in the current issues data from our "db"
+  const issuesData = JSON.parse(fs.readFileSync('./data.json'));
+
+  // 2. get requested id from params
+  //issue ids are being stored as ints, hence parsing int
+  const requestedId = parseInt(req.params.id);
+
+  // 3. find the index of the object in the array that matches the id
+  const issueIndex = issuesData.findIndex((issue) => issue.id === requestedId);
+
+  //4. delete object at that index
+  issuesData.splice(issuesData, 1);
+
+  //6. Writing the entire issuesData array from memory to the file (overwriting existing)
+  fs.writeFileSync('./data.json', JSON.stringify(issuesData, null, 2));
+
+  // 5. return a message saying which issue was deleted (by id)
+  res.send(`deleted issue with id ${requestedId}`);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
