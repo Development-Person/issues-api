@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Development-Person/issues-api/issues"
   },
-  "homepage": "https://github.com/Development-Person/issues-api#readme"
+  "homepage": "https://github.com/Development-Person/issues-api#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
