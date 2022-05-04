@@ -105,7 +105,7 @@ app.delete('/issues/:id/delete', (req, res) => {
   const issueIndex = issuesData.findIndex((issue) => issue.id === requestedId);
 
   //4. delete object at that index
-  issuesData.splice(issuesData, 1);
+  issuesData.splice(issueIndex, 1);
 
   //6. Writing the entire issuesData array from memory to the file (overwriting existing)
   fs.writeFileSync('./data.json', JSON.stringify(issuesData, null, 2));
